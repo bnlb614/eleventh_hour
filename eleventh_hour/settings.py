@@ -7,11 +7,12 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-
+# django directory is located: '/Library/Python/2.7/site-packages/django'
+# location of admin templates: ''/Library/Python/2.7/site-packages/django/contrib/admin/tempplates/admin''
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -36,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polls'
 )
 
 MIDDLEWARE_CLASSES = (
