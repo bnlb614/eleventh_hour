@@ -20,6 +20,7 @@ class QuestionAdmin(admin.ModelAdmin):
 	inlines = [ChoiceInlineTabular]
 	#below tuple makes it so we display question text and publication data in two columns on main admin page.
 	list_display = ('question_text','pub_date')
+	#below make a search box. Magic
 	search_fiels = ['question_text']
 
 
