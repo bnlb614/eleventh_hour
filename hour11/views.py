@@ -8,6 +8,21 @@ from hour11.models import User11Hour
 def index(request):
 	return render_to_response('hour11/index.html', context_instance=RequestContext(request))
 
+def user_page(request,username):
+
+	template = loader.get_template('hour11/user_page.html')
+	context = RequestContext(request)
+
+	current_user = request.user 
+	if current_user != username:
+		return HttpResponse('Trying to access an account you\'re not logged in to.')
+	suggested = []
+	for special_user in User11Hour.objects.all():
+		# if special_user.sex in current_user.sex_preferences:
+		suggested.append(special_user.user.username)
+
+	return render_to_response('hour11/user_page.html', {'suggested':suggested,'current_user':current_user},context)
+
 def user_login(request):
 	
 	template = loader.get_template('hour11/login.html')
@@ -32,14 +47,14 @@ def user_login(request):
 		if user: 
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect('/')
+				return HttpResponseRedirect('/hour11/{}'.format(user.username))
 
 			else:
 				return HttpResponse("Your account is disabled.")
 		else:
 			return HttpResponse("Invalid login details.")
 	else:
-		return render_to_response('login.html',{}, context)
+		return render_to_response('hour11/login.html', context)
 
 
 def register(request):
@@ -79,8 +94,15 @@ def register(request):
 		user_form = User11HourForm()
 		profile_form = User11HourProfileForm()
 
-	return render_to_response('register.html',
+	return render_to_response('hour11/register.html',
 							{'user_form':user_form, 
 							'profile_form':profile_form, 
 							'registered':registered},
 							context)
+
+
+
+
+
+
+

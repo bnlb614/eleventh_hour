@@ -8,12 +8,12 @@
         <h1>Register with 11th Hour</h1>
 
         {% if registered %}
-        <strong>thank you for registering!</strong>
+        <strong>Thank you for registering!</strong>
         <a href="/hour11/">Return to the homepage.</a><br />
         {% else %}
         <strong>register here!</strong><br />
 
-        <form id="user_form" method="post" action="hour11/register/"
+        <form id="user_form" method="post" 
                 enctype="multipart/form-data">
 
             {% csrf_token %}

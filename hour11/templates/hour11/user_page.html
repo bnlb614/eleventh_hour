@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> 11th Hour </title>
+	</head>
+
+	<body>
+		<h1>Hey there {{current_user.username}}!</h1>
+		<ul>
+		{% for suggested_user in suggest %}
+			<li>{{suggested_user.username}}</li>
+		{% endfor %}
+		</ul>
+	</body>
+</html>
